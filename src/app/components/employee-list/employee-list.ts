@@ -1,31 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../../services/employee.service';
+import { Employee } from '../../models/employee';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css',
+  standalone: false,
 })
 export class EmployeeList {
-searchText: any;
-deleteEmployee(arg0: any) {
-throw new Error('Method not implemented.');
-}
-} 
-import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/models/employee';
-import { EmployeeService } from 'src/app/services/employee.service';
-
-@Component({
-  selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html'
-})
-export class EmployeeListComponent implements OnInit {
-
   employees: Employee[] = [];
   searchText: string = '';
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     this.employees = this.employeeService.getEmployees();
@@ -46,7 +33,9 @@ export class EmployeeListComponent implements OnInit {
 
     return this.employees.filter(employee =>
       employee.name.toLowerCase()
-      .includes(this.searchText.toLowerCase())
+        .includes(this.searchText.toLowerCase())
     );
   }
 }
+
+
