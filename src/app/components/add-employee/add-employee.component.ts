@@ -12,7 +12,7 @@ export class AddEmployeeComponent {
     employeeService: any;
 constructor(private fb: FormBuilder) {}
   addEmployee() {
-
+console.log('testing github');
     if (this.employeeForm.invalid) {
       return;
     }
