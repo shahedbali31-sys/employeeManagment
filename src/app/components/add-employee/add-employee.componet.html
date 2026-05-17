@@ -1,0 +1,36 @@
+<h2>Add Employee</h2>
+
+<form [formGroup]="employeeForm">
+
+  <input
+    type="text"
+    placeholder="Name"
+    formControlName="name"
+  >
+
+  <br><br>
+
+  <input
+    type="text"
+    placeholder="Department"
+    formControlName="department"
+  >
+
+  <br><br>
+
+  <input
+    type="text"
+    placeholder="Salary"
+    formControlName="salary"
+  >
+
+  <br><br>
+
+  <button
+    (click)="addEmployee()"
+    [disabled]="employeeForm.invalid"
+  >
+    +
+  </button>
+
+</form>
