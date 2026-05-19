@@ -8,34 +8,31 @@ import { Employee } from '../../models/employee';
   styleUrl: './employee-list.css',
   standalone: false,
 })
-export class EmployeeList {
-  employees: Employee[] = [];
+export class EmployeeList implements OnInit {  
   searchText: string = '';
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(public employeeService: EmployeeService) { }  
 
   ngOnInit(): void {
-    this.employees = this.employeeService.getEmployees();
+    this.employeeService.loadEmployees()
+  }
+
+
+  get employees(): Employee[] {
+    return this.employeeService.getEmployees();
   }
 
   deleteEmployee(id: number) {
-
     const confirmDelete = confirm('Are you sure?');
-
     if (confirmDelete) {
       this.employeeService.deleteEmployee(id);
-
-      this.employees = this.employeeService.getEmployees();
     }
   }
 
   get filteredEmployees() {
-
     return this.employees.filter(employee =>
       employee.name.toLowerCase()
         .includes(this.searchText.toLowerCase())
     );
   }
 }
-
-

@@ -23,7 +23,6 @@ export class EmployeeService {
 
   deleteEmployee(id: number) {
     this.employees = this.employees.filter(e => e.id !== id);
-
     localStorage.setItem('employees', JSON.stringify(this.employees));
   }
 
@@ -32,6 +31,13 @@ export class EmployeeService {
 
     if (data) {
       this.employees = JSON.parse(data);
+    } else {
+    
+      this.employees = [
+        { id: 1, name: 'Alice Johnson', department: 'HR', salary: 5000 },
+        { id: 2, name: 'Bob Smith', department: 'IT', salary: 6500 },
+        { id: 3, name: 'Charlie Brown', department: 'Finance', salary: 5500 },
+      ];
     }
   }
 }
